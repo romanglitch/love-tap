@@ -3,10 +3,17 @@ set -e
 
 echo "🔄 Waiting for PostgreSQL to be ready..."
 
+# Parse host and port from DATABASE_URL
+DB_HOST=$(echo "$DATABASE_URL" | sed -E 's|.*@([^:/]+).*|\1|')
+DB_PORT=$(echo "$DATABASE_URL" | sed -E 's|.*:([0-9]+)/.*|\1|')
+DB_PORT=${DB_PORT:-5432}
+
+echo "📡 Connecting to ${DB_HOST}:${DB_PORT}..."
+
 # Wait until PostgreSQL accepts connections (max 30 attempts, 2s each)
 MAX_RETRIES=30
 RETRY_COUNT=0
-until npx prisma db execute --stdin < /dev/null 2>/dev/null; do
+until pg_isready -h "$DB_HOST" -p "$DB_PORT" -q 2>/dev/null; do
   RETRY_COUNT=$((RETRY_COUNT + 1))
   if [ "$RETRY_COUNT" -ge "$MAX_RETRIES" ]; then
     echo "❌ Could not connect to PostgreSQL after ${MAX_RETRIES} attempts. Exiting."
