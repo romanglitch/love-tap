@@ -1,0 +1,23 @@
+{
+  "name": "love-tap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd lovetap && docker compose up -d --build",
+    "update": "cd lovetap && git pull && docker compose up -d --build",
+    "openterm": "bash open_term.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romanglitch/love-tap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/romanglitch/love-tap/issues"
+  },
+  "homepage": "https://github.com/romanglitch/love-tap#readme"
+}
