@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cd lovetap && docker compose up -d --build",
-    "update": "cd lovetap && git pull && docker compose up -d --build",
+    "update": "cd lovetap && git pull && docker compose up -d --build app",
     "openterm": "bash open_term.sh"
   },
   "repository": {
