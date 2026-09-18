@@ -21,7 +21,8 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Install only production dependencies
+# Install postgresql-client for pg_isready + production dependencies
+RUN apk add --no-cache postgresql-client
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
 
