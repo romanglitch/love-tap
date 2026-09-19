@@ -6,7 +6,9 @@
   "scripts": {
     "start": "cd lovetap && docker compose up -d --build",
     "update": "cd lovetap && git pull && docker compose up -d --build app",
-    "openterm": "bash open_term.sh"
+    "openterm": "bash open_term.sh",
+    "oikb:sync": "bash sync.sh",
+    "oikb:watch": "bash watch.sh"
   },
   "repository": {
     "type": "git",
