@@ -6,9 +6,9 @@
   "scripts": {
     "start": "cd lovetap && docker compose up -d --build",
     "update": "cd lovetap && git pull && docker compose up -d --build app",
-    "openterm": "bash open_term.sh",
-    "oikb:sync": "bash sync.sh",
-    "oikb:watch": "bash watch.sh"
+    "openterm": "bash -c \"set -a; source ./.env; set +a; open-terminal run --host \\\"$OT_HOST\\\" --port \\\"$OT_PORT\\\" --api-key \\\"$OT_API_KEY\\\"\"",
+    "oikb:sync": "bash -c \"set -a; source ./.env; set +a; OPEN_WEBUI_URL=\\\"$OIKB_SERVER_URL\\\" OPEN_WEBUI_API_KEY=\\\"$OIKB_API_KEY\\\" oikb sync . --kb-id \\\"$OIKB_KNOWLEDGE_ID\\\"\"",
+    "oikb:watch": "bash -c \"set -a; source ./.env; set +a; OPEN_WEBUI_URL=\\\"$OIKB_SERVER_URL\\\" OPEN_WEBUI_API_KEY=\\\"$OIKB_API_KEY\\\" oikb watch . --kb-id \\\"$OIKB_KNOWLEDGE_ID\\\"\""
   },
   "repository": {
     "type": "git",
